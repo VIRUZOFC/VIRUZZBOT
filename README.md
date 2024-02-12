@@ -36,18 +36,12 @@
 ------------------ 
 
 
-## `𝙴𝙳𝙸𝚃𝙾𝚁 𝚈 𝙿𝚁𝙾𝙿𝙸𝙴𝚃𝙰𝚁𝙸𝙾 𝙳𝙴𝙻 𝙱𝙾𝚃`
+## `propietario`
 
-<a href="https://github.com/elrebelde21"><img src="https://github.com/elrebelde21.png" width="250" height="250" alt="elrebelde21"/></a>
+<a href="https://github.com/VIRUZZOFC"><img src="https://github.com/VIRUZZOFC.png" width="250" height="250" alt="viuzz"/></a>
 
 ## `👑 𝙲𝙾𝙻𝙰𝙱𝙾𝚁𝙰𝙳𝙾𝚁𝙴𝚂 👑`
-
-[![GataNina-Li](https://github.com/GataNina-Li.png?size=100)](https://github.com/GataNina-Li) 
-[![Skidy89](https://github.com/Skidy89.png?size=100)](https://github.com/Skidy89) 
-[![AzamiJs](https://github.com/AzamiJs.png?size=100)](https://github.com/AzamiJs)  
-[![KatashiFukushima](https://github.com/KatashiFukushima.png?size=100)](https://github.com/KatashiFukushima)
-[![sensei-ofc](https://github.com/sensei-ofc.png?size=100)](https://github.com/sensei-ofc)
-[![diegojadibot](https://github.com/diegojadibot.png?size=100)](https://github.com/diegojadibot)
+<a>ESPERADO<\a>
 
 ## `𝙰𝙶𝚁𝙰𝙳𝙴𝙲𝙸𝙼𝙸𝙴𝙽𝚃𝙾𝚂 & 𝙲𝚁𝙴𝙳𝙸𝚃𝙾𝚂` 
 <a href="https://github.com/ferhacks"><img src="https://github.com/ferhacks.png" width="150" height="150" alt="ferhacks"/></a>
