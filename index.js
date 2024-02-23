@@ -63,7 +63,7 @@ setting: {},
 others: {},
 sticker: {},
 ...(global.db.data || {})}
-  global.db.chain = _.chain(global.db.data)}
+ global.db.chain = _.chain(global.db.data)}
 loadDatabase() //@aidenlogin
 
 if (global.db) setInterval(async () => {
@@ -207,12 +207,12 @@ const sock = makeWASocket({
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
-browser: opcion == '1' ? ['NovaBot-MD', 'Chrome', '2.0.0'] : methodCodeQR ? ['NovaBot-MD', 'Chrome', '2.0.0'] : ['Ubuntu', 'Chrome', '110.0.5585.95'],
+browser: opcion == '1' ? ['NovaBot-MD', 'Edge', '2.0.0'] : methodCodeQR ? ['NovaBot-MD', 'Edge', '2.0.0'] : ['Ubuntu', 'Edge', '110.0.5585.95'],
 auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
 },
-browser: ['Ubuntu', 'Chrome', '110.0.5585.95'], //
+browser: ['Ubuntu', 'Edge', '110.0.5585.95'], //
 markOnlineOnConnect: true, //establecer falso para fuera de línea
 generateHighQualityLinkPreview: true, //hacer enlace de vista previa alta
 getMessage: async (key) => {
@@ -305,7 +305,7 @@ for (let fucker of fuckedcall) {
 if (fucker.isGroup == false) {
 if (fucker.status == "offer") {
 let call = await sock.sendTextWithMentions(fucker.from, `*[ ! ] @${fucker.from.split('@')[0]} ${lenguaje['smscall']()} ${fucker.isVideo ? `videollamadas` : `llamadas` }_\n\n${lenguaje['smscall2']()}\n\n• ${fb}`)
-let vcard = `BEGIN:VCARD\nVERSION:3.0\nN:;Propietario 👑;;;\nFN:Propietario\nORG:Propietario 👑\nTITLE:\nitem1.TEL;waid=595975740803:+595 975 740803\nitem1.X-ABLabel:Propietario 👑\nX-WA-BIZ-DESCRIPTION:ᴇsᴄʀɪʙɪ sᴏʟᴏ ᴘᴏʀ ᴄᴏsᴀs ᴅᴇʟ ʙᴏᴛ.\nX-WA-BIZ-NAME:Owner 👑\nEND:VCARD`
+let vcard = `BEGIN:VCARD\nVERSION:3.0\nN:;Propietario 👑;;;\nFN:Propietario\nORG:Propietario 👑\nTITLE:\nitem1.TEL;waid=5492266466080:+54 9 2266 46-6080\nitem1.X-ABLabel:Propietario 👑\nX-WA-BIZ-DESCRIPTION:ᴇsᴄʀɪʙɪ sᴏʟᴏ ᴘᴏʀ ᴄᴏsᴀs ᴅᴇʟ ʙᴏᴛ.\nX-WA-BIZ-NAME:Owner 👑\nEND:VCARD`
 sock.sendMessage(fucker.from, { contacts: { displayName: 'ɴᴏᴠᴀʙᴏᴛ-ᴍᴅ 👑', contacts: [{ vcard }] }}, {quoted: call, ephemeralExpiration: 24*60*100, disappearingMessagesInChat: 24*60*100})
 await sleep(8000)
 await sock.updateBlockStatus(fucker.from, "block")
@@ -550,11 +550,15 @@ body: `Esperemos que no vuelva -_-`,
 if (media === 'stickers')
 sock.sendFile(anu.id, byegc, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: '乂 ＡＤＩＯ́Ｓ 乂', body: `${name.split("@")[0]}`, mediaType: 2, sourceUrl: `${pickRandom([md, yt])}`, thumbnail: leave}}})
 } else if (anu.action == 'promote') {
+//let users = participants.map(u => sock.decodeJid(u.id))
+const groupAdmins = participants.filter(p => p.admin)
+const listAdmin = groupAdmins.map((v, i) => `*» ${i + 1}. @${v.id.split('@')[0]}*`).join('\n')
 const buffer = await getBuffer(ppuser)
 let name = num
-sock.sendMessage(anu.id, { text: `${pickRandom(['[ NUEVO ADMINS ]\n\n', 'Hey'])} @${name.split("@")[0]} ${pickRandom(['Ahora eres admin del grupo 🥳', 'Felicidades ahora eres parte staff 🎉'])}`, 
+let usuario = anu.author
+sock.sendMessage(anu.id, { text: `${pickRandom(['[ NUEVO ADMINS ]\n\n', 'Hey'])} @${name.split("@")[0]} ${pickRandom(['Ahora eres admin del grupo 🥳', 'Felicidades ahora eres parte staff 🎉'])}\n\n🫵 Acción echa por : @${usuario.split("@")[0]}`, mentions: [...groupAdmins.map(v => v.id)], 
  contextInfo:{
- mentionedJid:[num],
+ mentionedJid: [num, usuario],
  "externalAdReply": {"showAdAttribution": true,
  "containsAutoReply": true,
  "title": `乂 ＮＵＥＶＯ ＡＤＭＩＮ 乂`,
@@ -566,9 +570,10 @@ sock.sendMessage(anu.id, { text: `${pickRandom(['[ NUEVO ADMINS ]\n\n', 'Hey'])}
 } else if (anu.action == 'demote') {
 const buffer = await getBuffer(ppuser)
 let name = num
-sock.sendMessage(anu.id, { text: `@${name.split("@")[0]} ${pickRandom(['Joderte ya no eres admin 🥲', 'jjjjj ya no eres admin culiado 🤣'])}`,
+let usuario = anu.author
+sock.sendMessage(anu.id, { text: `@${name.split("@")[0]} ${pickRandom(['Joderte ya no eres admin 🥲', 'jjjjj ya no eres admin culiado 🤣'])}\n\n🫵 Acción echa por : @${usuario.split("@")[0]}`,
  contextInfo:{
- mentionedJid:[num],
+ mentionedJid:[num, usuario],
  "externalAdReply": {"showAdAttribution": true,
  "containsAutoReply": true,
  "title": `乂 ＵＮ ＡＤＭＩＮ ＭＥＮＯＳ  乂`,
@@ -578,7 +583,7 @@ sock.sendMessage(anu.id, { text: `@${name.split("@")[0]} ${pickRandom(['Joderte 
 "thumbnail": leave,
 "sourceUrl": `${pickRandom([nna, md, yt])}`}}}, {quoted: null, ephemeralExpiration: 24*60*100, disappearingMessagesInChat: 24*60*100})
 }}} catch (err) {
-console.log(`${err} Error`)
+console.log(err)
 }})
 
 function pickRandom(list) {
@@ -591,7 +596,9 @@ sock.ev.on('connection.update', async (update) => {
 const { connection, lastDisconnect, qr, receivedPendingNotifications, isNewLogin} = update;
 console.log(receivedPendingNotifications)
 if (isNewLogin) sock.isInit = true
-if (connection == 'connecting') {
+const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
+
+if (update.connection == "connecting" || update.receivedPendingNotifications == "false") {
 console.log(chalk.gray('iniciando...'));
 say('NovaBot-MD', {
   font: 'chrome',
@@ -600,52 +607,98 @@ say('NovaBot-MD', {
 say(`By: elrebelde21`, {
   font: 'console',
   align: 'center',
-  gradient: ['red', 'magenta']});
- 
-} else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
-console.log(color('[SYS]', '#009FFF'),
-color(moment().format('DD/MM/YY HH:mm:ss'), '#A1FFCE'),
-color(`${lenguaje['smsConexioncerrar']()}`, '#f64f59'));
-startBot()
-} else if (opcion == '1' || methodCodeQR && qr !== undefined) {
+  gradient: ['red', 'magenta']})}
+  
+try {
+let reason = new Boom(lastDisconnect?.error)?.output.statusCode
+if (connection === 'close') {
+if (reason === DisconnectReason.badSession) {
+console.log(chalk.yellow(`${lenguaje['smsConexionOFF']()}`)) 
+startBot();
+} else if (reason === DisconnectReason.connectionClosed) {
+console.log(chalk.yellow(`${lenguaje['smsConexioncerrar']()}`)) 
+startBot();
+} else if (reason === DisconnectReason.connectionLost) {
+console.log(chalk.yellow(`${lenguaje['smsConexionperdida']()}`)) 
+startBot();
+} else if (reason === DisconnectReason.connectionReplaced) {
+console.log(chalk.yellow(`${lenguaje['smsConexionreem']()}`)) 
+startBot();
+} else if (reason === DisconnectReason.loggedOut) {
+console.log(chalk.yellow(`${lenguaje['smsConexionOFF']()}`))
+startBot();
+} else if (reason === DisconnectReason.restartRequired) {
+console.log(chalk.yellow(`${lenguaje['smsConexionreinicio']()}`)) 
+startBot();
+} else if (reason === DisconnectReason.timedOut) {
+console.log(chalk.yellow(`${lenguaje['smsConexiontiem']()}`)) 
+startBot();
+} else sock.end(`${lenguaje['smsConexiondescon']()} ${reason || ''}: ${connection || ''}`);}
+	
+if (opcion == '1' || methodCodeQR && qr !== undefined) {
 if (opcion == '1' || methodCodeQR) {
 console.log(color('[SYS]', '#009FFF'),
 color(moment().format('DD/MM/YY HH:mm:ss'), '#A1FFCE'),
 color(`\n╭━─━─━─≪ ${vs} ≫─━─━─━╮\n│${lenguaje['smsEscaneaQR']()}\n╰━─━━─━─≪ 🟢 ≫─━─━━─━╯`, '#f12711'))
-}
-} else if (connection == 'open') {
+}}
+
+if (update.connection == "open" || update.receivedPendingNotifications == "true") {
 console.log(color(` `,'magenta'))
 console.log(color(`\n${lenguaje['smsConexion']()} ` + JSON.stringify(sock.user, null, 2), 'yellow'))
 console.log(color('[SYS]', '#009FFF'),
 color(moment().format('DD/MM/YY HH:mm:ss'), '#A1FFCE'),
 color(`\n╭━─━─━─≪ ${vs} ≫─━─━─━╮\n│${lenguaje['smsConectado']()}\n╰━─━━─━─≪ 🟢 ≫─━─━━─━╯` + receivedPendingNotifications, '#38ef7d')
-);
+)
+
+if (!sock.user.connect) {
+await delay(3 * 3000)
+///await sock.groupAcceptInvite(nna2) 
+sock.sendMessage("5492266466080@s.whatsapp.net", { text: `${pickRandom(['Hola me he conectado como un nuevo bot 🥳', 'Hola 👋😄 Mi creador, me he conectado a tu bot 🤩', 'Holi 👋 mi creador, He instalando tu bot 🤩, ya estoy conectado con éxito 😉'])}`, 
+contextInfo:{
+forwardingScore: 9999999, 
+isForwarded: true
+}})
+sock.user.connect = true;
+return false;
+}} 
+
+} catch (err) {
+console.log('Error en Connection.update '+err)
+startBot()
+}}) 
 
 const rainbowColors = ['red', 'yellow', 'green', 'blue', 'purple'];
 let index = 0;
 
 function printRainbowMessage() {
 const color = rainbowColors[index];
-//console.log(chalk.keyword(color)('\n\n⏳️ Cargado los mensajes....'));
+console.log(chalk.keyword(color)('\n\n⏳️ Cargado los mensajes....'));
 index = (index + 1) % rainbowColors.length;
 setTimeout(printRainbowMessage, 60000) //Ajuste el tiempo de espera a la velocidad deseada
 }
 
 printRainbowMessage();
 
-if (!sock.user.connect) {
-await delay(3 * 3000)
-await sock.groupAcceptInvite(nna2) 
-/*sock.sendMessage("573183650526@s.whatsapp.net", { text: `${pickRandom(['Hola me he conectado como un nuevo bot 🥳', 'Hola 👋😄 Mi creador, me he conectado a tu bot 🤩', 'Holi 👋 mi creador, He instalando tu bot 🤩, ya estoy conectado con éxito 😉'])}`, 
-contextInfo:{
-forwardingScore: 9999999, 
-isForwarded: true
-}})*/
-sock.user.connect = true;
-return false;
+//responder cmd pollMensaje
+async function getMessage(key){
+if (store) {
+const msg = await store.loadMessage(key.remoteJid, key.id)
+return msg?.message
 }
-}});
+return { conversation: "hola" }}
 
+sock.ev.on('messages.update', async chatUpdate => {
+for(const { key, update } of chatUpdate) {
+if (update.pollUpdates && key.fromMe) {
+const pollCreation = await getMessage(key)
+if (pollCreation) {
+const pollUpdate = await getAggregateVotesInPollMessage({message: pollCreation, pollUpdates: update.pollUpdates, })
+var toCmd = pollUpdate.filter(v => v.voters.length !== 0)[0]?.name
+if (toCmd == undefined) return
+var prefCmd = prefix+toCmd
+sock.appenTextMessage(prefCmd, chatUpdate)
+}}}})
+    
 sock.public = true
 store.bind(sock.ev)
 sock.ev.on('creds.update', saveCreds)
